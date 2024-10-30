@@ -4,15 +4,12 @@ import time
 import json
 from enum import Enum
 from pythonosc.udp_client import SimpleUDPClient
-from modules.say import speak
 
-TEST = 1
-
-with open('terrors.json', 'r') as f:
+with open('data/terrors.json', 'r') as f:
     # Load the JSON data into a Python dictionary
     terrors = json.load(f)
 
-with open('alternates.json', 'r') as f:
+with open('data/alternates.json', 'r') as f:
     # Load the JSON data into a Python dictionary
     alternates = json.load(f)
 
@@ -23,7 +20,7 @@ def find_latest_log(directory):
         return None
     
     latest_log = max(log_files, key=os.path.getmtime)
-    print(f"Current VRChat Log: {latest_log}\nRunning! ToN games should appear below! ^^\n===================")
+    print(f"Pulling From: {latest_log}\n===================")
     return latest_log
 
 def get_round_type_count(rounds):
