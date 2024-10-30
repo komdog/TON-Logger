@@ -172,3 +172,11 @@ alternates = [
     "the_red_mist",
     "overseer",
 ]
+
+def get_terror_name(round, id):
+    # No killer
+    if int(id) == 0: return "<>"
+
+    match round:
+        case "Alternate": return f"{alternates[int(id)]} : {int(id)}"
+        case  _: return f"{terrors[int(id)]} : {int(id)}"
