@@ -1,23 +1,23 @@
 
 import modules.terrorManager as database
-from print_color import print
+from colored import Fore, Back, Style
 
 round_colors = {
-    'Classic': 'white',
-    'Fog': 'gray',
-    'Punished': 'yellow',
-    'Sabotage': 'green',
-    'Cracked': 'putple',
-    'Alternate': 'blue',
-    'Bloodbath': 'red',
-    'Midnight': 'red',
-    'Mystic Moon': 'blue',
-    'Twilight': 'yellow',
-    'Solstice': 'green',
-    '8 Pages': 'gray',
-    'Blood Moon': 'red',
-    'Unbound': 'orange',
-    'Ghost': 'blue'
+    'Classic': f'{Style.BOLD}{Fore.rgb(255,255,255)}',
+    'Fog': f'{Style.BOLD}{Fore.rgb(150,150,150)}',
+    'Punished': f'{Style.BOLD}{Fore.rgb(255,200,0)}',
+    'Sabotage': f'{Style.BOLD}{Fore.rgb(0,255,0)}',
+    'Cracked': f'{Style.BOLD}{Fore.rgb(255,10,255)}',
+    'Alternate': f'{Style.BOLD}{Fore.rgb(202,235,255)}',
+    'Bloodbath': f'{Style.BOLD}{Fore.rgb(220,0,0)}',
+    'Midnight': f'{Style.BOLD}{Fore.rgb(255,0,0)}',
+    'Mystic Moon': f'{Style.BOLD}{Fore.rgb(0,60,255)}',
+    'Twilight': f'{Style.BOLD}{Fore.rgb(255,255,255)}',
+    'Solstice': f'{Style.BOLD}{Fore.rgb(255,255,255)}',
+    '8 Pages': f'{Style.BOLD}{Fore.rgb(255,255,255)}',
+    'Blood Moon': f'{Style.BOLD}{Fore.rgb(255,0,0)}',
+    'Unbound': f'{Style.BOLD}{Fore.rgb(255,100,0)}',
+    'Ghost': f'{Style.BOLD}{Fore.rgb(200,200,255)}',
 }
 
 def is_standard_log_entry(log_entry):
@@ -70,4 +70,5 @@ def get_round_info(log_entry):
 
 
 def log_print(map_name, killers, round_type):
-    print(f"{map_name} {killers}", tag=f'{round_type}', tag_color=f'{round_colors[round_type]}', color=f'{round_colors[round_type]}', background='grey')
+    color: str = round_colors[round_type]
+    print(f"{color} [{round_type}] {map_name} {killers} {Style.reset}")
