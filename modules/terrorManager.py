@@ -181,19 +181,19 @@ def get_terror_names(round_type, killers_indexes):
 
 def standard(id):
     slot_0 = terrors[int(id[0])]
-    slot_1 = terrors[int(id[1])] if not id[0] == "0" else "<>"
-    slot_2 = terrors[int(id[2])] if not id[0] == "0" else "<>"
+    slot_1 = terrors[int(id[1])] if not int(id[1]) == 0 else "<>"
+    slot_2 = terrors[int(id[2])] if not int(id[1]) == 0 else "<>"
     return [ slot_0, slot_1, slot_2 ]
 
 def alternate(id):
     slot_0 = alternates[int(id[0])]
-    slot_1 = terrors[int(id[1])] if not id[0] == "0" else "<>"
-    slot_2 = terrors[int(id[2])] if not id[0] == "0" else "<>"
+    slot_1 = terrors[int(id[1])] if not int(id[1]) == "0" else "<>"
+    slot_2 = terrors[int(id[2])] if not int(id[1]) == "0" else "<>"
     return [ slot_0, slot_1, slot_2 ]
 
 def midnight(id):
     slot_0 = terrors[int(id[0])]
-    slot_1 = terrors[int(id[1])] if not id[0] == "0" else "<>"
-    slot_2 = alternates[int(id[2])] if not id[0] == "0" else "<>"
+    slot_1 = terrors[int(id[1])] if not int(id[1]) == "0" else "<>"
+    slot_2 = alternates[int(id[2])] if not int(id[1]) == "0" else "<>"
     return [ slot_0, slot_1, slot_2 ]
 
