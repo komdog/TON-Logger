@@ -86,8 +86,8 @@ terrors = [
     "arrival",  # 84
     "miros_birds",  # 85
     "bff",  # 86
-    "scavenger",  # 87
-    "lain",  # 88
+    "lain",  # 87
+    "scavenger",  # 88
     "tinky_winky",  # 89
     "tricky",  # 90
     "yolm",  # 91
@@ -114,10 +114,10 @@ terrors = [
     "beyond",  # 112
     "terror_of_nowhere",  # 113
     "fox_squad",
-    "poly",  # 114
+    "express_train_to_hell",  # 117
     "dog_mimic",  # 115
     "warden",  # 116
-    "express_train_to_hell",  # 117
+    "poly",  # 114
     "killer_fish",  # 118
     "deleted",  # 119
     "time_ripper",  # 120

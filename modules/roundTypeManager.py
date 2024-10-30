@@ -12,7 +12,8 @@ types = [
     'Solstice', 
     '8 Pages', 
     'Blood Moon', 
-    'Unbound'
+    'Unbound',
+    'Ghost'
 ]
 
 # Get the number of each occouring round type
