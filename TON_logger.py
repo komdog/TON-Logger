@@ -29,10 +29,6 @@ def get_round_type_count(rounds):
         # count = rounds.count(f' {round_type}')
         # print(f"{round_type}: {count}")
 
-def get_alt_name(id):
-    if int(id) == 0: return "<>"
-    
-
 def get_terror_name(round, id):
     # No killer
     if int(id) == 0: return "<>"
