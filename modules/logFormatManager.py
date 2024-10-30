@@ -35,9 +35,9 @@ def get_round_type(log_entry):
     return round_data[1].rstrip('\n')
 
 # Get killer names
-def get_killers(log_entry):
+def get_killers(round_type, log_entry):
     killers_indexes = log_entry.split("Killers have been set - ")[1].split("//")[0].rstrip(' ').split(" ")
-    return map(lambda k: database.get_terror_name(round, k), killers_indexes)
+    return database.get_terror_names(round_type, killers_indexes)
 
 
 def get_round_info(log_entry):
@@ -53,7 +53,7 @@ def get_round_info(log_entry):
 
     # Get Killer names
     if "Killers have been set - " in log_entry:
-        killers = get_killers(log_entry)
+        killers = get_killers(round_type, log_entry)
         log_print(map_name, killers, round_type)
         
     # Fog Round
@@ -70,4 +70,4 @@ def get_round_info(log_entry):
 
 
 def log_print(map_name, killers, round_type):
-    print(f"{map_name} {list(killers)}", tag=f'{round_type}', tag_color=f'{round_colors[round_type]}', color=f'{round_colors[round_type]}', background='grey')
+    print(f"{map_name} {killers}", tag=f'{round_type}', tag_color=f'{round_colors[round_type]}', color=f'{round_colors[round_type]}', background='grey')

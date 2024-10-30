@@ -173,10 +173,27 @@ alternates = [
     "overseer",
 ]
 
-def get_terror_name(round, id):
-    # No killer
-    if int(id) == 0: return "<>"
+def get_terror_names(round_type, killers_indexes):
+    match round_type:
+        case "Alternate": return alternate(killers_indexes)
+        case "Midnight": return midnight(killers_indexes)
+        case  _: return standard(killers_indexes)
 
-    match round:
-        case "Alternate": return f"{alternates[int(id)]} : {int(id)}"
-        case  _: return f"{terrors[int(id)]} : {int(id)}"
+def standard(id):
+    slot_0 = terrors[int(id[0])]
+    slot_1 = terrors[int(id[1])] if not id[0] == "0" else "<>"
+    slot_2 = terrors[int(id[2])] if not id[0] == "0" else "<>"
+    return [ slot_0, slot_1, slot_2 ]
+
+def alternate(id):
+    slot_0 = alternates[int(id[0])]
+    slot_1 = terrors[int(id[1])] if not id[0] == "0" else "<>"
+    slot_2 = terrors[int(id[2])] if not id[0] == "0" else "<>"
+    return [ slot_0, slot_1, slot_2 ]
+
+def midnight(id):
+    slot_0 = terrors[int(id[0])]
+    slot_1 = terrors[int(id[1])] if not id[0] == "0" else "<>"
+    slot_2 = alternates[int(id[2])] if not id[0] == "0" else "<>"
+    return [ slot_0, slot_1, slot_2 ]
+

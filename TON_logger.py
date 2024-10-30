@@ -18,13 +18,15 @@ def find_latest_log(directory):
         return None
     
     latest_log = max(log_files, key=os.path.getmtime)
-    print(f"Pulling From: {latest_log}\n===================")
+    print(f"\nPulling From: {latest_log}\n")
     return latest_log
 
 
 def display_round_info(log_file):
     file_stream_position = 0
     rounds = []
+
+    print("=========== SESSION LOG ===========\n")
 
     while True:
         with open(log_file, 'r', encoding='utf-8') as file:
@@ -39,15 +41,13 @@ def display_round_info(log_file):
                 log.get_round_info(log_entry)
 
             # Add round type to occurance array
-            
-            if "Round type is " in log_entry:
-                round_name = log_entry.split("Round type is ")[1].rstrip('\n')
-                print(round_name)
+                if "Round type is " in log_entry:
+                    round_name = log_entry.split("Round type is ")[1].rstrip('\n')
+                    rounds.append(round_name)
                     
             # Count the number of each round type    
-            if "Hud" in lines[0]: continue
-            round = roundManager.get_round_type_count(rounds)
-            print(round)
+            # if "Hud" in lines[0]: continue
+            # roundManager.get_round_type_count(rounds)
 
             file_stream_position = eof
         
