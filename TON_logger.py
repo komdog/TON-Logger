@@ -1,17 +1,10 @@
 import os
 import glob
 import time
-import json
-from enum import Enum
-from pythonosc.udp_client import SimpleUDPClient
+import database.terrors as database
 
-with open('data/terrors.json', 'r') as f:
-    # Load the JSON data into a Python dictionary
-    terrors = json.load(f)
-
-with open('data/alternates.json', 'r') as f:
-    # Load the JSON data into a Python dictionary
-    alternates = json.load(f)
+# from enum import Enum
+# from pythonosc.udp_client import SimpleUDPClient
 
 def find_latest_log(directory):
     log_files = glob.glob(os.path.join(directory, "*.txt"))
@@ -34,8 +27,8 @@ def get_terror_name(round, id):
     if int(id) == 0: return "<>"
 
     match round:
-        case "Alternate": return f"{alternates[int(id)]} : {int(id)}"
-        case  _: return f"{terrors[int(id)]} : {int(id)}"
+        case "Alternate": return f"{database.alternates[int(id)]} : {int(id)}"
+        case  _: return f"{database.terrors[int(id)]} : {int(id)}"
     
     
 
