@@ -6,7 +6,7 @@ import time
 
 # TON related imports
 import modules.terrorManager as database
-import modules.roundTypeManager as round
+import modules.roundTypeManager as roundManager
 import modules.OSCManager as osc
 
 
@@ -27,17 +27,20 @@ def is_valid_log_entry(log_entry):
     return True
 
 def display_round_info(log_file):
-    last_position = 0
+    file_stream_position = 0
     rounds = []
 
     while True:
         with open(log_file, 'r', encoding='utf-8') as file:
             
             # Read each line of the log file
-            file.seek(last_position)
+            file.seek(file_stream_position)
             lines = file.readlines()
-            new_position = file.tell()
-            
+            eof = file.tell()
+
+            # If no new lines, stop
+            if lines == []: continue
+
             # Check each line for the round type
             for log_entry in lines:
 
@@ -50,8 +53,6 @@ def display_round_info(log_file):
                     killers_indexes = log_entry.split("Killers have been revealed - ")[1].split("//")[0].rstrip(' ').split(" ")
                     killers = map(lambda k: database.get_terror_name(round, k), killers_indexes)
                     print(f"{round} : {list(killers)}")
-
-
                 
                 if is_valid_log_entry(log_entry):
                     # Get round name
@@ -68,11 +69,11 @@ def display_round_info(log_file):
                     print(f"{round} : {list(killers)}")
                 
             # Count the number of each round type    
-            # get_round_type_count(rounds)
+            roundManager.get_round_type_count(rounds)
 
-            last_position = new_position
+            file_stream_position = eof
         
-        time.sleep(1)
+        time.sleep(5)
         
 
 # # Current round types in game

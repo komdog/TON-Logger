@@ -17,5 +17,7 @@ types = [
 
 # Get the number of each occouring round type
 def get_round_type_count(rounds):
-    for type in round.types:
-        print(type)
+    print('\n=========== TOTAL ROUND TYPES =========== \n')
+    for type in types:
+        counts = rounds.count(type)
+        print(f"{type} : {counts}")
