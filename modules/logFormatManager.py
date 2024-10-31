@@ -11,7 +11,7 @@ round_colors = {
     'Alternate': f'{Style.BOLD}{Fore.rgb(202,235,255)}',
     'Bloodbath': f'{Style.BOLD}{Fore.rgb(220,0,0)}',
     'Midnight': f'{Style.BOLD}{Fore.rgb(255,0,0)}',
-    'Mystic Moon': f'{Style.BOLD}{Fore.rgb(0,60,255)}',
+    'Mystic Moon': f'{Style.BOLD}{Fore.rgb(100,100,255)}',
     'Twilight': f'{Style.BOLD}{Fore.rgb(255,255,255)}',
     'Solstice': f'{Style.BOLD}{Fore.rgb(255,255,255)}',
     '8 Pages': f'{Style.BOLD}{Fore.rgb(255,255,255)}',
@@ -39,6 +39,10 @@ def get_killers(round_type, log_entry):
     killers_indexes = log_entry.split("Killers have been set - ")[1].split("//")[0].rstrip(' ').split(" ")
     return database.get_terror_names(round_type, killers_indexes)
 
+def get_killers_fog(round_type, log_entry):
+    killers_indexes = log_entry.split("Killers have been revealed - ")[1].split("//")[0].rstrip(' ').split(" ")
+    return database.get_terror_names(round_type, killers_indexes)
+
 
 def get_round_info(log_entry):
     # Get Map Name and Round Type Name
@@ -49,11 +53,11 @@ def get_round_info(log_entry):
     if 'This round is taking place at' in log_entry: 
         map_name = get_map_name(log_entry)
         round_type = get_round_type(log_entry)
-        # print(f"{map_name} | {round_type}")
 
     # Get Killer names
     if "Killers have been set - " in log_entry:
         killers = get_killers(round_type, log_entry)
+        if round_type == 'Mystic Moon': killers = ['Psychosis']
         log_print(map_name, killers, round_type)
         
     # Fog Round
@@ -62,10 +66,9 @@ def get_round_info(log_entry):
         # print(f"Killer Will Be Revealed Soon...")
         pass
 
-    # Get for round killers
+    # Get fog round killers
     if "Killers have been revealed - " in log_entry:
-        killers_indexes = log_entry.split("Killers have been revealed - ")[1].split("//")[0].rstrip(' ').split(" ")
-        killers = map(lambda k: database.get_terror_name(round, k), killers_indexes)
+        killers = get_killers_fog(round_type, log_entry)
         log_print(map_name, killers, round_type)
 
 
