@@ -1,3 +1,5 @@
+import modules.OSCManager as osc
+
 terrors = [
     "Huggy",
     "Corrupted Toys",
@@ -176,6 +178,9 @@ alternates = [
 ]
 
 def get_terror_names(round_type, killers_indexes):
+
+    osc.send_terrors(killers_indexes)
+
     match round_type:
         case "Alternate": return alternate(killers_indexes)
         case "Midnight": return midnight(killers_indexes)
