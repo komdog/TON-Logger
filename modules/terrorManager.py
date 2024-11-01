@@ -156,7 +156,7 @@ alternates = [
     "Feddys",
     "TBH SPY",
     "The Observation",
-    " ",
+    "Lisa",
     "Judas",
     "Glaggle Gang",
     "Try Not To Touch Me",
@@ -180,6 +180,7 @@ alternates = [
 def get_terror_names(round_type, killers_indexes):
 
     osc.send_terrors(killers_indexes)
+    print(killers_indexes)
 
     match round_type:
         case "Alternate": return alternate(killers_indexes)

@@ -7,10 +7,12 @@ port = 9000
 osc = SimpleUDPClient(ip, port)
 
 def send_terrors(terror_ids):
-    # print("Sending TO OSC...")
-    osc.send_message( "/avatar/parameters/VF126_r1_slot_0" , int(terror_ids[0]) )
-    osc.send_message( "/avatar/parameters/VF126_r1_slot_1" , int(terror_ids[1]) )
-    osc.send_message( "/avatar/parameters/VF126_r1_slot_2" , int(terror_ids[2]) )
+    for i in range(3):
+        terror_value = float(terror_ids[i]) / 291.0 # Get Float value from terror id
+        if i > 0 and terror_value == 0: terror_value = 155.0 / 291.0 # 155 is an empty terror slot
+        
+        # Send data to OSC
+        osc.send_message( f"/avatar/parameters/VF123_r1_slot_{i}" , terror_value )
 
 
 
