@@ -17,6 +17,7 @@ round_colors = {
     '8 Pages': f'{Style.BOLD}{Fore.rgb(255,255,255)}',
     'Blood Moon': f'{Style.BOLD}{Fore.rgb(255,0,0)}',
     'Unbound': f'{Style.BOLD}{Fore.rgb(255,100,0)}',
+    'Run': f'{Style.BOLD}{Fore.rgb(255,180,0)}',
     'Ghost': f'{Style.BOLD}{Fore.rgb(200,200,255)}',
 }
 
@@ -49,6 +50,12 @@ def get_round_info(log_entry):
 
     global map_name
     global round_type
+
+    if 'is Run' in log_entry: 
+        map_name = get_map_name(log_entry)
+        round_type = get_round_type(log_entry)
+        killers = database.get_terror_names(round_type, [267,0,0])
+        log_print(map_name, killers, round_type)
 
     if 'This round is taking place at' in log_entry: 
         map_name = get_map_name(log_entry)

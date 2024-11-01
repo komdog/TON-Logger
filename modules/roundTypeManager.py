@@ -13,7 +13,8 @@ types = [
     '8 Pages', 
     'Blood Moon', 
     'Unbound',
-    'Ghost'
+    'Ghost',
+    'Run'
 ]
 
 # Get the number of each occouring round type
