@@ -177,30 +177,91 @@ alternates = [
     "Overseer",
 ]
 
-def get_terror_names(round_type, killers_indexes):
+eight_pages = [
+    "Slendy",
+    "Punishing Bird",
+    "Snarbolax",
+    "Sturm",
+    "Arkus",
+    "Cartoon Cat",
+    "TBH",
+    "Specimen 10",
+    "Specimen 2",
+    "Withered Bonnie",
+    "MX",
+    "Luigi",
+    "Comedy",
+    "Toren's Shadow",
+    "Huggy",
+    "Corrupted Woody",
+    "Demented Spongebob",
+    "HER",
+    "Ao Oni",
+    "Sawrunner",
+    "Imposter",
+    "With Many Voices",
+    "The Guidance",
+    "Big Bird",
+    "Bacteria",
+    "Akumii-kari",
+    "Miros Bird",
+    "Apocrean Harvester",
+    "Legs",
+    "This Killer Does Not Exist",
+    "Judgement Bird",
+    "All-Around-Helper",
+    "ALTERNATES",
+    "Slendy",
+    "Slendy",
+    "HoovyDundy",
+    "Angry Munci",
+    "Shadow Freddy",
+    "Immortal Snail",
+    "Herobrine",
+    "Tinky Winky",
+    "Jester",
+    "Ghost Girl",
+    "Warden",
+    "Dog Mimic",
+    "Red Mist Apparition ",
+    "Baldi",
+    "Living Shadow",
+    "Clockey",
+    "sm64.z64",
+    "Searchlights",
+]
+
+def get_terror_names(round_type: str, killers_indexes: list) -> list[str]:
 
     osc.send_terrors(killers_indexes)
 
     match round_type:
+        case "Run": return ["MeatBall Man", "", ""]
+        case "8 Pages": return pages(killers_indexes)
         case "Alternate": return alternate(killers_indexes)
         case "Midnight": return midnight(killers_indexes)
         case  _: return standard(killers_indexes)
 
-def standard(id):
+def standard(id: list) -> list[str]:
     slot_0 = terrors[int(id[0])]
     slot_1 = terrors[int(id[1])] if not int(id[1]) == 0 else ""
     slot_2 = terrors[int(id[2])] if not int(id[1]) == 0 else ""
     return [ slot_0, slot_1, slot_2 ]
 
-def alternate(id):
+def alternate(id: list) -> list[str]:
     slot_0 = alternates[int(id[0])]
     slot_1 = terrors[int(id[1])] if not int(id[1]) == 0 else ""
     slot_2 = terrors[int(id[2])] if not int(id[1]) == 0 else ""
     return [ slot_0, slot_1, slot_2 ]
 
-def midnight(id):
+def midnight(id: list) -> list[str]:
     slot_0 = terrors[int(id[0])]
     slot_1 = terrors[int(id[1])] if not int(id[1]) == 0 else ""
     slot_2 = alternates[int(id[2])] if not int(id[1]) == 0 else ""
     return [ slot_0, slot_1, slot_2 ]
 
+def pages(id: list) -> list[str]:
+    slot_0 = eight_pages[int(id[0])]
+    slot_1 = ''
+    slot_2 = ''
+    return [ slot_0, slot_1, slot_2 ]

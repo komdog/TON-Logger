@@ -44,7 +44,6 @@ def get_killers_fog(round_type, log_entry):
     killers_indexes = log_entry.split("Killers have been revealed - ")[1].split("//")[0].rstrip(' ').split(" ")
     return database.get_terror_names(round_type, killers_indexes)
 
-
 def get_round_info(log_entry):
     # Get Map Name and Round Type Name
 
@@ -69,12 +68,12 @@ def get_round_info(log_entry):
         
     # Fog Round
     if "Killers is unknown" in log_entry:
-        # round = log_entry.split("Round type is ")[1].rstrip('\n') # Round type is fog
-        # print(f"Killer Will Be Revealed Soon...")
-        pass
+        round = log_entry.split("Round type is ")[1].rstrip('\n') # Round type is fog
 
     # Get fog round killers
     if "Killers have been revealed - " in log_entry:
+        print('a')
+        print(round_type)
         killers = get_killers_fog(round_type, log_entry)
         log_print(map_name, killers, round_type)
 

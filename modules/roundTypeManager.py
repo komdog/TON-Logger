@@ -18,7 +18,7 @@ types = [
 ]
 
 # Get the number of each occouring round type
-def get_round_type_count(rounds):
+def get_round_type_count(rounds) -> None:
     print('\n=========== TOTAL ROUND TYPES =========== \n')
     for type in types:
         counts = rounds.count(type)
