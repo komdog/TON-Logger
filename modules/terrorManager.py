@@ -231,8 +231,7 @@ eight_pages = [
     "Searchlights",
 ]
 
-def get_terror_names(round_type: str, killers_indexes: list) -> list[str]:
-
+def get_terror_names(round_type: str, killers_indexes: list[str]) -> list[str]:
     osc.send_terrors(killers_indexes)
 
     match round_type:
@@ -242,7 +241,7 @@ def get_terror_names(round_type: str, killers_indexes: list) -> list[str]:
         case "Midnight": return midnight(killers_indexes)
         case  _: return standard(killers_indexes)
 
-def standard(id: list) -> list[str]:
+def standard(id: list[str]) -> list[str]:
     slot_0 = terrors[int(id[0])]
     slot_1 = terrors[int(id[1])] if not int(id[1]) == 0 else ""
     slot_2 = terrors[int(id[2])] if not int(id[1]) == 0 else ""
